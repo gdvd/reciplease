@@ -8,36 +8,31 @@
 import UIKit
 
 
-class ListRecipeViewController: UIViewController {
+class ListRecipeViewController: UIViewController, UITableViewDataSource {
     
     var listArguments: [String] = []
-    var resultRequest: [String] = []
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewRecipe: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(listArguments.count.description)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        tableViewRecipe.reloadData()
     }
-    
-    
-}
-extension ListRecipeViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultRequest.count
+        return listArguments.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
-        //let recipe = resultRequest[indexPath]
-        //cell.textLabel?.text = recipe.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(ingredients: listArguments[indexPath.row])
         return cell
     }
     
