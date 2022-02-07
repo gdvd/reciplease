@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Image" representedClassName=".Image" syncable="YES" codeGenerationType="category">
+        <attribute name="height" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="url" attributeType="String"/>
+        <attribute name="width" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="images" inverseEntity="Recipe"/>
+    </entity>
+    <entity name="Ingredient" representedClassName=".Ingredient" syncable="YES" codeGenerationType="category">
+        <attribute name="food" attributeType="String" defaultValueString=""/>
+        <attribute name="idIngredient" attributeType="String"/>
+        <attribute name="measure" attributeType="String" defaultValueString=""/>
+        <relationship name="ingredient2rec" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipe2Ingredient" inverseName="rec2recipe" inverseEntity="Recipe2Ingredient"/>
+    </entity>
+    <entity name="Recipe" representedClassName=".Recipe" syncable="YES" codeGenerationType="category">
+        <attribute name="duration" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="idRecipe" attributeType="String"/>
+        <attribute name="label" attributeType="String" defaultValueString=""/>
+        <attribute name="urlApi" attributeType="String"/>
+        <attribute name="urlSrc" attributeType="String"/>
+        <attribute name="yield" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Image" inverseName="recipe" inverseEntity="Image"/>
+        <relationship name="recipe2ing" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipe2Ingredient" inverseName="ing2recipe" inverseEntity="Recipe2Ingredient"/>
+    </entity>
+    <entity name="Recipe2Ingredient" representedClassName=".Recipe2Ingredient" syncable="YES" codeGenerationType="category">
+        <attribute name="quantity" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="text" attributeType="String" defaultValueString=""/>
+        <attribute name="weight" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="ing2recipe" maxCount="1" deletionRule="No Action" destinationEntity="Recipe" inverseName="recipe2ing" inverseEntity="Recipe"/>
+        <relationship name="rec2recipe" maxCount="1" deletionRule="No Action" destinationEntity="Ingredient" inverseName="ingredient2rec" inverseEntity="Ingredient"/>
+    </entity>
+    <elements>
+        <element name="Image" positionX="223.1636962890625" positionY="-142.7025146484375" width="128" height="118"/>
+        <element name="Ingredient" positionX="-20.2296142578125" positionY="275.7960205078126" width="128" height="103"/>
+        <element name="Recipe" positionX="-95.56866455078125" positionY="-199.7080993652344" width="128" height="178"/>
+        <element name="Recipe2Ingredient" positionX="-13.876220703125" positionY="73.10931396484375" width="128" height="118"/>
+    </elements>
+</model>

@@ -14,12 +14,20 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         
     private var searchModel: SearchModel!
 
+    //TODO: Erase after debug
+    private let saveObjectToDB = SaveObjectToDB.shared
+    
     //MARK: - Manage view
     override func viewDidLoad() {
         super.viewDidLoad()
         searchModel = SearchModel.shared
         searchModel.listArguments = []
         argToSearch.becomeFirstResponder()
+        //TODO: Erase after debug
+//        saveObjectToDB.resetAllRecords(in: "Recipe2Ingredient")
+//        saveObjectToDB.resetAllRecords(in: "Ingredient")
+//        saveObjectToDB.resetAllRecords(in: "Recipe")
+//        saveObjectToDB.resetAllRecords(in: "Image")
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -39,7 +47,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToListRecipe" {
             let listRecipeVC = segue.destination as! ListRecipeViewController
-            listRecipeVC.listArguments = searchModel.listArguments
+            listRecipeVC.listArgumentsFetch = searchModel.listArguments
             
         }
     }

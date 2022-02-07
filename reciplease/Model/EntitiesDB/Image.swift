@@ -2,12 +2,12 @@
 //  Image.swift
 //  reciplease
 //
-//  Created by Gilles David on 25/01/2022.
+//  Created by Gilles David on 01/02/2022.
 //
 
 import Foundation
 import CoreData
 
-class ImageDB: NSManagedObject {
+class Image: NSManagedObject {
     
 }

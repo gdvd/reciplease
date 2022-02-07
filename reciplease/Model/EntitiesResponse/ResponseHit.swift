@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ResponseHit: Codable {
+struct ResponseHit: Codable {
     
     init(recipe: ResponseRecipe){
         self.recipe = recipe

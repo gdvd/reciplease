@@ -8,23 +8,25 @@
 import Foundation
 
 
-class ResponseRecipe: Codable {
+struct ResponseRecipe: Codable {
     
-    init(label: String, images: ResponseImage, totalTime: Int, url: [String], shareAs: [String], yield: Int, ingredients: [ResonseIngredient]) {
+    init(label: String, images: ResponseImages, totalTime: Int, url: String?, uri: String?, shareAs: String?, yield: Int?, ingredients: [ResonseIngredient]) {
         self.label = label
         self.images = images
         self.totalTime = totalTime
         self.url = url
+        self.uri = uri
         self.shareAs = shareAs
         self.yield = yield
         self.ingredients = ingredients
     }
     
-    var label: String
-    var images: ResponseImage
+    var label: String // recipe name
+    var images: ResponseImages
     var totalTime: Int
-    var url: [String] // Original recipe URL
-    var shareAs: [String] // API recipe URL
-    var yield: Int // Number of servings 
+    var uri: String? // Original recipe URL with id
+    var url: String? // Original recipe URL
+    var shareAs: String? // API recipe URL
+    var yield: Int? // Number of servings 
     var ingredients: [ResonseIngredient]
 }

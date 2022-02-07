@@ -7,32 +7,37 @@
 
 import Foundation
 
-class ResponseImages: Codable {
+struct ResponseImages: Codable {
     
-    init(THUMBNAIL: ResponseImage, SMALL: ResponseImage, REGULAR: ResponseImage, LARGE: ResponseImage) {
-        self.THUMBNAIL = THUMBNAIL
-        self.SMALL = SMALL
-        self.REGULAR = REGULAR
-        self.LARGE = LARGE
+    init(thumbnail: ResponseImage?, small: ResponseImage?, regular: ResponseImage?, large: ResponseImage?) {
+        self.thumbnail = thumbnail
+        self.small = small
+        self.regular = regular
+        self.large = large
     }
     
-    var THUMBNAIL: ResponseImage
-    var SMALL: ResponseImage
-    var REGULAR: ResponseImage
-    var LARGE: ResponseImage
+    var thumbnail: ResponseImage?
+    var small: ResponseImage?
+    var regular: ResponseImage?
+    var large: ResponseImage?
     
-    
+    private enum CodingKeys: String, CodingKey {
+        case thumbnail = "THUMBNAIL"
+        case small = "SMALL"
+        case regular = "REGULAR"
+        case large = "LARGE"
+    }
 }
 
-class ResponseImage: Codable {
+struct ResponseImage: Codable {
     
-    init(url: [String], width: Int, height: Int) {
+    init(url: String, width: Int, height: Int) {
         self.url = url // Recipe image URL
         self.width = width
         self.height = height
     }
     
-    var url: [String]
+    var url: String
     var width: Int
     var height: Int
 }

@@ -8,18 +8,22 @@
 import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var ingredientsLabel: UILabel!
+    //Cell
     @IBOutlet weak var customCell: UIView!
     @IBOutlet weak var imageRecipe: UIImageView!
-    @IBOutlet weak var squareInfo: UIView!
     
+    // Elements Cell
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var labelRecipe: UILabel!
     
+    // Elements Cell -> Square info recipe
+    @IBOutlet weak var squareInfo: UIView! 
     @IBOutlet weak var viewSquareInfo: UIView!
     @IBOutlet weak var nbYield: UILabel!
     @IBOutlet weak var iconYield: UIImageView!
     @IBOutlet weak var durationRecipe: UILabel!
     @IBOutlet weak var iconDurationRecipe: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,19 +37,20 @@ class RecipeTableViewCell: UITableViewCell {
         squareInfo.layer.borderWidth = 2;
     }
     
-    func configure(ingredients: String){
-        ingredientsLabel.text = ingredients
-        imageRecipe.image = UIImage(named: "cooking.png")
-        nbYield.text = "2"
-        durationRecipe.text = "20m"
+    func configure(recipe: RecipeToShow){
+        
+        ingredientsLabel.text = recipe.ingredientWithDetails.joined(separator: ", ")
+        labelRecipe.text = recipe.label
+        imageRecipe.image = recipe.img
+        nbYield.text = recipe.yield
+        durationRecipe.text = recipe.duration
     }
     
     func addShadowInView(radius: CGFloat){
         let topColor: UIColor = UIColor.black.withAlphaComponent(0.9)
         let shadowLayer = CAGradientLayer()
         shadowLayer.cornerRadius = layer.cornerRadius
-        shadowLayer.frame = bounds
-        shadowLayer.frame = CGRect(x: 0.0, y: imageRecipe.layer.bounds.height - radius, width: imageRecipe.layer.bounds.width, height: radius)
+        shadowLayer.frame = CGRect(x: 0.0, y: imageRecipe.layer.bounds.height - radius, width: imageRecipe.layer.bounds.width + 15, height: radius)
         shadowLayer.colors = [
             UIColor.clear.cgColor
             ,topColor.cgColor

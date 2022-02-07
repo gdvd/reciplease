@@ -2,14 +2,12 @@
 //  Recipe.swift
 //  reciplease
 //
-//  Created by Gilles David on 25/01/2022.
+//  Created by Gilles David on 31/01/2022.
 //
 
 import Foundation
 import CoreData
 
-class RecipeDB: NSManagedObject {
+class Recipe: NSManagedObject {
     
 }
-
-

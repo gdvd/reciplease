@@ -7,19 +7,22 @@
 
 import Foundation
 
-class ResonseIngredient: Codable {
+struct ResonseIngredient: Codable {
     
-    init(text: String, quantity:Double, measure: String, food: String) {
+    init(text: String, quantity:Double, measure: String?, food: String, foodId: String, weight: Double?) {
         self.text = text
         self.quantity = quantity
         self.measure = measure
         self.food = food
+        self.foodId = foodId
+        self.weight = weight
     }
     
     var text: String
     var quantity:Double
-    var measure: String
+    var measure: String?
     var food: String
-    
+    var foodId: String
+    var weight: Double?
     
 }
