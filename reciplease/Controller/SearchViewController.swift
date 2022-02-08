@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     private var searchModel: SearchModel!
 
     //TODO: Erase after debug
-    private let saveObjectToDB = SaveObjectToDB.shared
+    private let manageCoreData = ManageCoreData.shared
     
     //MARK: - Manage view
     override func viewDidLoad() {
@@ -24,10 +24,10 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         searchModel.listArguments = []
         argToSearch.becomeFirstResponder()
         //TODO: Erase after debug
-//        saveObjectToDB.resetAllRecords(in: "Recipe2Ingredient")
-//        saveObjectToDB.resetAllRecords(in: "Ingredient")
-//        saveObjectToDB.resetAllRecords(in: "Recipe")
-//        saveObjectToDB.resetAllRecords(in: "Image")
+//        manageCoreData.resetAllRecords(in: "Recipe2Ingredient")
+//        manageCoreData.resetAllRecords(in: "Ingredient")
+//        manageCoreData.resetAllRecords(in: "Recipe")
+//        manageCoreData.resetAllRecords(in: "Image")
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

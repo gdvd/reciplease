@@ -23,6 +23,9 @@
         <attribute name="yield" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Image" inverseName="recipe" inverseEntity="Image"/>
         <relationship name="recipe2ing" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recipe2Ingredient" inverseName="ing2recipe" inverseEntity="Recipe2Ingredient"/>
+        <userInfo>
+            <entry key="idRecipe.isPrimaryKey" value="true"/>
+        </userInfo>
     </entity>
     <entity name="Recipe2Ingredient" representedClassName=".Recipe2Ingredient" syncable="YES" codeGenerationType="category">
         <attribute name="quantity" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

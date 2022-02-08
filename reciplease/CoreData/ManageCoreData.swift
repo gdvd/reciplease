@@ -5,17 +5,82 @@
 //  Created by Gilles David on 01/02/2022.
 //
 
-import Foundation
 import CoreData
 
-class SaveObjectToDB {
+class ManageCoreData {
     
-    public static let shared = SaveObjectToDB()
+    public static let shared = ManageCoreData()
     private init() {}
     
     private let context = AppDelegate.viewContext
     
-    func resetAllRecords(in entity : String) {// entity = Your_Entity_Name 
+    public func getAllRecipeToShowWhenFavoriteIsTrue()  -> [RecipeToShow] {
+        var listRecipeToShow: [RecipeToShow] = []
+        
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        //request.predicate = NSPredicate(format: "favorite == %@", 1)
+        request.predicate = NSPredicate(format: "favorite = %d", true)
+        //request.predicate = NSPredicate(format: "boolAttribute == %@", NSNumber(value: true))
+        
+        if let recipes = try? AppDelegate.viewContext.fetch(request) {
+            for recipe in recipes {
+                listRecipeToShow.append(recipeToRecipetoshow(recipe: recipe))
+            }
+        }
+        return listRecipeToShow
+    }
+    
+    private func recipeToRecipetoshow(recipe: Recipe) -> RecipeToShow {
+        
+        var ingredients: [String] = []
+        var ingredientWithDetails: [String] = []
+        
+        if let rec2in = recipe.recipe2ing {
+            for r2c in rec2in {
+                let ri = r2c as! Recipe2Ingredient
+                if let r1 = ri.rec2recipe!.food {
+                    ingredients.append(r1)
+                }
+                if let r2 = ri.text {
+                    ingredientWithDetails.append(r2)
+                }
+                // let qt = ri.quantity // 1.0
+                // let we = ri.weight // 28.0
+                // let me = (ri.rec2recipe!.measure ?? "") as String
+                //                  // OPTIONAL : cup/<unit>/gram...
+            }
+        }
+        
+        var recipeToShow = RecipeToShow(idRecipe: recipe.idRecipe!, label: recipe.label!, yield: recipe.yield.description, duration: recipe.duration.description, ingredients: ingredients, ingredientWithDetails: ingredientWithDetails, urlApi: recipe.urlApi!, urlSrc: recipe.urlSrc!, favorite: recipe.favorite)
+        
+            // Make the best choice of image size, with sort in "sortImg" 
+            var tblUrlImgSorted: [String] = []
+            SizeImgRecipe.allCases.forEach { enumSizeImg in 
+                if let imgs = recipe.images {
+                    for img in imgs {
+                        let im = img as! Image
+                        if im.name! == enumSizeImg.rawValue {
+                            tblUrlImgSorted.append(im.url!.description)
+                            break
+                        }
+                    }
+                }
+            }
+        recipeToShow.images = tblUrlImgSorted
+        return recipeToShow
+    }
+    
+    public func getOneRecipeToShow(withId: String) -> RecipeToShow? {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "idRecipe == %@", withId)
+        if let recipe = try? AppDelegate.viewContext.fetch(request)[0] {
+            return recipeToRecipetoshow(recipe: recipe)
+        }
+        return nil
+    }
+    
+    func resetAllRecords(in entity : String) {
+        print("reset record \(entity)")
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do
@@ -27,6 +92,24 @@ class SaveObjectToDB {
         {
             print ("There was an error")
         }
+    }
+    
+    public func setValueForFavorite(idRecipe: String, favorite: Bool) -> Bool {
+        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        request.predicate = NSPredicate(format: "idRecipe == %@", idRecipe)
+        if let recipe = try? AppDelegate.viewContext.fetch(request)[0] {
+            recipe.favorite = favorite
+            //recipe.setValue(true, forKey: "favorite")
+            do {
+                try context.save()
+            }
+            catch {
+                print("error db", error)
+                return false
+            }
+            return true
+        }     
+        return false
     }
     
     public func saveInDB(recipesInHits: [ResponseHit]) -> [String] {
@@ -70,7 +153,6 @@ class SaveObjectToDB {
     }
     
     private func addNewRecipe(recipe: ResponseRecipe, idRecipe: String) -> Recipe? {
-//        print("id '\(idRecipe)' label '\(recipe.label)' duration '\(recipe.totalTime.description)'\n")
         let newRecipe = Recipe(context: context)
         newRecipe.idRecipe = idRecipe
         newRecipe.favorite = false

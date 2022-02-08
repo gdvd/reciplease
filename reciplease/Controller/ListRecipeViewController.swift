@@ -14,7 +14,6 @@ class ListRecipeViewController: UIViewController {
     var listArgumentsFetch: [String] = []
     var listRecipesToShow:[RecipeToShow] = []
     let listRecipeModel = ListRecipeModel.shared
-    var positionInListToDownload = 0
     
     var recipeToShow: RecipeToShow!
     var rowSelected: Int = 0
@@ -23,6 +22,10 @@ class ListRecipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initData()
+    }
+    
+    private func initData() {
         listRecipeModel.searchRecipes(tblStringRequest: listArgumentsFetch) {
             
             result in
@@ -30,8 +33,7 @@ class ListRecipeViewController: UIViewController {
             case .Success(response: let resp):
                 print(resp.count)
                 self.listRecipesToShow = resp
-                self.positionInListToDownload = 0
-                self.updateImgs()
+                self.updateImgs(findNb: 0)
             case .Zero:
                 print("Return zero")
             case .Failure(let error):
@@ -41,30 +43,32 @@ class ListRecipeViewController: UIViewController {
         }
     }
     
-
+    public func updateFavoriteFromDetailVC(idRecipe: String, favorite: Bool){
+        for (index, _) in listRecipesToShow.enumerated() {
+            if listRecipesToShow[index].idRecipe == idRecipe {
+                listRecipesToShow[index].favorite = favorite
+            }
+        }
+    }
     
-    private func updateImgs() {
-        print("-----updateImgs & pos :", positionInListToDownload)
-        if positionInListToDownload < listRecipesToShow.count {
-            let urlImgToDowloadNow = listRecipesToShow[positionInListToDownload].images
+    private func updateImgs(findNb: Int) {
+        if findNb < listRecipesToShow.count {
+            let urlImgToDowloadNow = listRecipesToShow[findNb].images
             if urlImgToDowloadNow.count > 0 {
                 listRecipeModel.searchOneImage(url: urlImgToDowloadNow[0]) {
                     [self] result in
                     switch result {
                     case .Success(let img):
-                        listRecipesToShow[positionInListToDownload].img = img
+                        listRecipesToShow[findNb].img = img
                     case .Failure(failure: let error):
                         print("******> error", error.localizedDescription)
                     }
-                    positionInListToDownload += 1
+                    updateImgs(findNb: findNb + 1)
                     self.tableViewRecipe.reloadData()
-                    updateImgs()
                 }
             }else {
-                positionInListToDownload += 1
+                updateImgs(findNb: findNb + 1)
             }
-        } else {
-            positionInListToDownload = 0
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +79,7 @@ class ListRecipeViewController: UIViewController {
             if segue.identifier == "segueToDetails" {
                 let detailVC = segue.destination as! DetailViewController
                 detailVC.recipeToShow = listRecipesToShow[rowSelected]
+                detailVC.prevDelegate = self
             }
         }
 }
