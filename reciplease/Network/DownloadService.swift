@@ -5,7 +5,6 @@
 //  Created by Gilles David on 28/01/2022.
 //
 
-import Foundation
 import UIKit
 import Alamofire
 

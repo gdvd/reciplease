@@ -17,7 +17,7 @@
         <!--Search-->
         <scene sceneID="Ghm-J1-dDZ">
             <objects>
-                <navigationController id="W44-Ny-EwI" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="searchNavigationStoryboardRest" storyboardIdentifier="searchNavigationStoryboard" id="W44-Ny-EwI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="10" title="Search" id="kr7-QU-kiz"/>
                     <navigationBar key="navigationBar" contentMode="bottom" id="5bA-Zm-aJb">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -40,7 +40,7 @@
         <!--Reciplease-->
         <scene sceneID="Hn2-q0-EGW">
             <objects>
-                <viewController id="4La-dD-Fog" customClass="SearchViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="searchStoryboardRest" storyboardIdentifier="searchStoryboard" id="4La-dD-Fog" customClass="SearchViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7bS-Sl-E74">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="843"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
         <!--Favorites-->
         <scene sceneID="Gtk-f4-b4K">
             <objects>
-                <navigationController id="8d1-5U-Pge" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="favoriteNavigationStoryboardRest" storyboardIdentifier="favoriteNavigationStoryboard" id="8d1-5U-Pge" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="11" title="Favorites" id="7bO-fN-XGT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mzx-j1-tSa">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -238,7 +238,7 @@
         <!--Favorite-->
         <scene sceneID="s9F-vV-6XY">
             <objects>
-                <viewController id="m2X-dx-UG5" customClass="FavoriteViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="favoriteListStoryboardRest" storyboardIdentifier="favoriteListStoryboard" id="m2X-dx-UG5" customClass="FavoriteViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dPa-ua-VWC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="843"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -426,7 +426,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
         <!--Reciplease-->
         <scene sceneID="uGg-8S-p1C">
             <objects>
-                <viewController id="2Ym-pg-YTV" customClass="ListRecipeViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="searchListStoryboardRest" storyboardIdentifier="searchListStoryboard" id="2Ym-pg-YTV" customClass="ListRecipeViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f8B-R5-mi6">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="843"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -749,7 +749,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="FjK-Nt-Ilc">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="2e9-Fo-mnF">
+                        <barButtonItem key="rightBarButtonItem" id="2e9-Fo-mnF">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="d10-nc-h1W">
                                 <rect key="frame" x="313" y="5" width="95" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -782,7 +782,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
         <!--Reciplease-->
         <scene sceneID="Ft0-VW-tyY">
             <objects>
-                <viewController id="pKp-ej-Ef9" customClass="DetailFavoriteViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="detailFavoriteStoryboardRest" storyboardIdentifier="detailFavoriteStoryboard" id="pKp-ej-Ef9" customClass="DetailFavoriteViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0Z-jA-dfP">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="843"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -945,7 +945,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="Gwy-jM-sht">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="XNb-K8-ddo">
+                        <barButtonItem key="rightBarButtonItem" id="XNb-K8-ddo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JTM-IB-Gjb">
                                 <rect key="frame" x="313" y="5" width="95" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -981,7 +981,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
         <!--Tab Bar Controller-->
         <scene sceneID="ULH-iW-Fef">
             <objects>
-                <tabBarController id="9Ni-DQ-UQF" customClass="TabBarController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="mainStoryboardRest" storyboardIdentifier="mainStoryboard" id="9Ni-DQ-UQF" customClass="TabBarController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="obl-Ub-fBD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1000,7 +1000,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
         <!--Reciplease-->
         <scene sceneID="6xS-gI-8q1">
             <objects>
-                <viewController id="baJ-gO-JEB" customClass="DetailViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="detailStoryboardRest" storyboardIdentifier="detailStoryboard" id="baJ-gO-JEB" customClass="DetailViewController" customModule="reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MM-fz-YD5">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1159,7 +1159,7 @@ Il faut effecter une recherche dans "search", puis afficher le détail de l'un d
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="4xD-P4-dFt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="KsV-dc-ETd">
+                        <barButtonItem key="rightBarButtonItem" id="KsV-dc-ETd">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="do3-T1-aHa">
                                 <rect key="frame" x="299" y="5" width="95" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
