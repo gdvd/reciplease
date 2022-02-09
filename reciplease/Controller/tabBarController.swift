@@ -13,14 +13,9 @@ class TabBarController: UITabBarController {
     
     
     override func viewDidLoad() {
-        
-//        self.tabBar.layer.borderColor = UIColor.gray.cgColor
-//        self.tabBar.layer.borderWidth = 1
-
         self.tabBar.itemPositioning = .fill
         addSeparatorToTabBar(sizeBorder: 2, color: UIColor.darkGray)
         setFont(fontSize: 42, fontName: "NanumPen")
-
     }
     
     fileprivate func setFont(fontSize: CGFloat, fontName: String) {

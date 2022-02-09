@@ -23,8 +23,6 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
-        favoriteTableView.reloadData()
     }
     
     private func initData() {
@@ -34,7 +32,21 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //initData()
+        initData()
+        
+        if listRecipesToShow.count > 0 {
+            explanationLabel.isHidden = true
+        } else {
+            explanationLabel.isHidden = false
+        }
+        favoriteTableView.reloadData()
+    }
+    public func updateFavoriteFromDetailVC(idRecipe: String, favorite: Bool){
+        for (index, _) in listRecipesToShow.enumerated() {
+            if listRecipesToShow[index].idRecipe == idRecipe {
+                listRecipesToShow[index].favorite = favorite
+            }
+        }
     }
     private func updateImgs(findNb: Int) {
         if findNb < listRecipesToShow.count {
@@ -56,7 +68,16 @@ class FavoriteViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToFavoriteDetails" {
+            let detailVC = segue.destination as! DetailFavoriteViewController
+            detailVC.recipeToShow = listRecipesToShow[rowSelected]
+            detailVC.prevDelegate = self
+        }
+    }
 }
+//MARK: - TableViewDataSource
 extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -74,7 +95,7 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         rowSelected = indexPath[1]
-        //performSegue(withIdentifier: "segueToDetailsFavorite", sender: self)
+        performSegue(withIdentifier: "segueToFavoriteDetails", sender: self)
     }
     
 }

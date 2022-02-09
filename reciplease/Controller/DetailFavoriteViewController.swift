@@ -1,13 +1,14 @@
 //
-//  DetailViewController.swift
+//  DetailFavoriteViewController.swift
 //  reciplease
 //
-//  Created by Gilles David on 06/02/2022.
+//  Created by Gilles David on 09/02/2022.
 //
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailFavoriteViewController: UIViewController {
+    
     
     @IBOutlet weak var recipeImg: UIImageView!
     @IBOutlet weak var labelRecipe: UILabel!
@@ -22,8 +23,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var squareInfo: UIView!
     
     var recipeToShow: RecipeToShow!
-    var prevDelegate: ListRecipeViewController!
     
+    var prevDelegate: FavoriteViewController!
     let detailModel = DetailModel.shared
     
     override func viewDidLoad() {
@@ -32,13 +33,25 @@ class DetailViewController: UIViewController {
         showInfoRecipe()
     }
     
-
+    private func toggleFavorite() {
+        let pushedToDb = detailModel.setValueForFavoriteInDb(idRecipe: recipeToShow.idRecipe, favorite: !recipeToShow.favorite)
+        if let prevDelegate = self.prevDelegate, pushedToDb {
+            recipeToShow.favorite = !recipeToShow.favorite
+            setColorIconFavorite()
+            prevDelegate.updateFavoriteFromDetailVC(idRecipe: recipeToShow.idRecipe, favorite: recipeToShow.favorite)
+        }
+    }
+    
+    
+    
+    
+    
     func customSquareInfo(){
         squareInfo.layer.cornerRadius = 7
         squareInfo.layer.borderColor = UIColor.systemGray3.cgColor;
         squareInfo.layer.borderWidth = 2;
     }
-    
+
     private func showInfoRecipe() {
         recipeImg.image = recipeToShow.img
         labelRecipe.text = recipeToShow.label
@@ -58,27 +71,6 @@ class DetailViewController: UIViewController {
         }
     }
     
-    private func toggleFavorite() {
-        let pushedToDb = detailModel.setValueForFavoriteInDb(idRecipe: recipeToShow.idRecipe, favorite: !recipeToShow.favorite)
-        if let prevDelegate = self.prevDelegate, pushedToDb {
-            recipeToShow.favorite = !recipeToShow.favorite
-            setColorIconFavorite()
-            prevDelegate.updateFavoriteFromDetailVC(idRecipe: recipeToShow.idRecipe, favorite: recipeToShow.favorite)
-        }
-    }
-    
-    @IBAction func imageStarAction(_ sender: Any) {
-        toggleFavorite()
-    }
-    
-    @IBAction func getDirectionButton(_ sender: UIButton) {
-        // GoTo recipeToShow.urlSrc
-        if let urlToGo = recipeToShow.urlSrc {
-            let url = URL(string: urlToGo)!
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-        }
-    }
-    
     func addShadowInView(radius: CGFloat){
         let topColor: UIColor = UIColor(red: 57/255, green: 54/255, blue: 52/255, alpha: 1)
         let shadowLayer = CAGradientLayer()
@@ -87,4 +79,19 @@ class DetailViewController: UIViewController {
         shadowLayer.colors = [ UIColor.clear.cgColor, topColor.cgColor ]
         recipeImg.layer.addSublayer(shadowLayer)
     }
+    
+    
+    @IBAction func getDirectionButton(_ sender: Any) {
+        // GoTo recipeToShow.urlSrc
+        if let urlToGo = recipeToShow.urlSrc {
+            let url = URL(string: urlToGo)!
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func imageStarAction(_ sender: Any) {
+        toggleFavorite()
+    }
+    
+    
 }

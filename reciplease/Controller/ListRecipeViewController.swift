@@ -31,7 +31,6 @@ class ListRecipeViewController: UIViewController {
             result in
             switch result {
             case .Success(response: let resp):
-                print(resp.count)
                 self.listRecipesToShow = resp
                 self.updateImgs(findNb: 0)
             case .Zero:
@@ -76,12 +75,12 @@ class ListRecipeViewController: UIViewController {
         tableViewRecipe.reloadData()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "segueToDetails" {
-                let detailVC = segue.destination as! DetailViewController
-                detailVC.recipeToShow = listRecipesToShow[rowSelected]
-                detailVC.prevDelegate = self
-            }
+        if segue.identifier == "segueToDetails" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.recipeToShow = listRecipesToShow[rowSelected]
+            detailVC.prevDelegate = self
         }
+    }
 }
 //MARK: - TableViewDataSource
 extension ListRecipeViewController: UITableViewDataSource, UITableViewDelegate {
