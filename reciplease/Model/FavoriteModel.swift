@@ -5,7 +5,6 @@
 //  Created by Gilles David on 08/02/2022.
 //
 
-import Foundation
 
 class FavoriteModel {
     
@@ -14,6 +13,12 @@ class FavoriteModel {
     
     public static let shared = FavoriteModel()
     private init() {}
+    
+    // 4 XCTest
+    convenience init(downloadService: DownloadService){
+        self.init()
+        self.downloadService = downloadService
+    }
     
     public func getAllRecipeToShowWhenFavoriteIsTrue() -> [RecipeToShow]{
         return manageCoreData.getAllRecipeToShowWhenFavoriteIsTrue()

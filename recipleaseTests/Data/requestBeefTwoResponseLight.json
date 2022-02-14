@@ -1,0 +1,168 @@
+{
+    "from": 1,
+    "to": 2,
+    "count": 10000,
+    "_links": {
+        "next": {
+            "href": "https://api.edamam.com/api/recipes/v2?q=beef&app_key=50fd4d36e5c637e54ca56014f14a0a2f&_cont=CHcVQBtNNQphDmgVQntAEX4BYlJtBgQFSmxDBWcRYFFwAwYVX3cVCzYXZFN0BQRTRGQUBmcaMFZ3BgVRQjRIUGRCZ10iBhFqX3cWQT1OcV9xBB8VADQWVhFCPwoxXVZEITQeVDcBaR4-SQ%3D%3D&type=public&app_id=841ecd18",
+            "title": "Next page"
+        }
+    },
+    "hits": [
+        {
+            "recipe": {
+                "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_123Test1",
+                "label": "Roast Test1",
+                "image": "https://www.edamam.com/web-img/207/2074a28ff50eba58d79304c9296438a1.jpg",
+                "images": {
+                    "THUMBNAIL": {
+                        "url": "https://www.edamam.com/web-img/207/2074a28ff50eba58d79304c9296438a1-s.jpg",
+                        "width": 100,
+                        "height": 100
+                    },
+                    "SMALL": {
+                        "url": "https://www.edamam.com/web-img/207/2074a28ff50eba58d79304c9296438a1-m.jpg",
+                        "width": 200,
+                        "height": 200
+                    },
+                    "REGULAR": {
+                        "url": "https://www.edamam.com/web-img/207/2074a28ff50eba58d79304c9296438a1.jpg",
+                        "width": 300,
+                        "height": 300
+                    }
+                },
+                "source": "BBC Good Food",
+                "url": "http://www.bbcgoodfood.com/recipes/2558/roast-sirloin-of-beef",
+                "shareAs": "http://www.edamam.com/recipe/roast-sirloin-of-beef-7eb3edfc916ebf0e4b028c8e5c04b81a/beef",
+                "yield": 6.0,
+                "ingredientLines": [
+                    "2 tbsp vegetable oil or beef fat",
+                    "1-1\u00bdkg/2lb 4-3lb 5oz sirloin of beef joint",
+                    "1 glass red wine",
+                    "400g can beef consomm\u00e9"
+                ],
+                "ingredients": [
+                    {
+                        "text": "2 tbsp vegetable oil or beef fat",
+                        "quantity": 2.0,
+                        "measure": "tablespoon",
+                        "food": "vegetable oil",
+                        "weight": 28.0,
+                        "foodCategory": "Oils",
+                        "foodId": "food_bt1mzi2ah2sfg8bv7no1qai83w8s",
+                        "image": "https://www.edamam.com/food-img/6e5/6e51a63a6300a8ea1b4c4cc68dfaba33.jpg"
+                    },
+                    {
+                        "text": "1-1\u00bdkg/2lb 4-3lb 5oz sirloin of beef joint",
+                        "quantity": 1.25,
+                        "measure": "kilogram",
+                        "food": "beef",
+                        "weight": 1250.0,
+                        "foodCategory": "meats",
+                        "foodId": "food_bknby1la98smrsbwnthinbam42nj",
+                        "image": "https://www.edamam.com/food-img/bab/bab88ab3ea40d34e4c8ae35d6b30344a.jpg"
+                    },
+                    {
+                        "text": "1 glass red wine",
+                        "quantity": 1.0,
+                        "measure": "cup",
+                        "food": "red wine",
+                        "weight": 235.2,
+                        "foodCategory": "wines",
+                        "foodId": "food_b5q0xv2ba8la5hbzdfzdgaca3fwu",
+                        "image": "https://www.edamam.com/food-img/82b/82b8d0db2d5c38fc7498a657c0afc4ee.JPG"
+                    },
+                    {
+                        "text": "400g can beef consomm\u00e9",
+                        "quantity": 400.0,
+                        "measure": "gram",
+                        "food": "beef consomm\u00e9",
+                        "weight": 400.0,
+                        "foodCategory": "canned soup",
+                        "foodId": "food_arlagstbtxcrk4ablvuh9b36no9m",
+                        "image": "https://www.edamam.com/food-img/6a5/6a5f7cf073a7e70af946bfb4d558a914.jpg"
+                    }
+                ],
+                "totalTime": 160.0
+            },
+            "_links": {
+                "self": {
+                    "href": "https://api.edamam.com/api/recipes/v2/7eb3edfc916ebf0e4b028c8e5c04b81a?type=public&app_id=841ecd18&app_key=50fd4d36e5c637e54ca56014f14a0a2f",
+                    "title": "Self"
+                }
+            }
+        },
+        {
+            "recipe": {
+                "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_123Test2",
+                "label": "Beef Test2",
+                "image": "https://www.edamam.com/web-img/ad3/ad35ae4c847dcd39bad104838007f84a.jpg",
+                "images": {
+                    "THUMBNAIL": {
+                        "url": "https://www.edamam.com/web-img/ad3/ad35ae4c847dcd39bad104838007f84a-s.jpg",
+                        "width": 100,
+                        "height": 100
+                    },
+                    "SMALL": {
+                        "url": "https://www.edamam.com/web-img/ad3/ad35ae4c847dcd39bad104838007f84a-m.jpg",
+                        "width": 200,
+                        "height": 200
+                    },
+                    "REGULAR": {
+                        "url": "https://www.edamam.com/web-img/ad3/ad35ae4c847dcd39bad104838007f84a.jpg",
+                        "width": 300,
+                        "height": 300
+                    }
+                },
+                "source": "Epicurious",
+                "url": "https://www.epicurious.com/recipes/food/views/beef-tea-395253",
+                "shareAs": "http://www.edamam.com/recipe/beef-tea-0f3a359371750f372c7ac3c1459751d9/beef",
+                "yield": 2.0,
+                "ingredientLines": [
+                    "8 ounces beef chuck steak, cut into 1/2-inch cubes",
+                    "1/4 teaspoon salt",
+                    "3 cups water"
+                ],
+                "ingredients": [
+                    {
+                        "text": "8 ounces beef chuck steak, cut into 1/2-inch cubes",
+                        "quantity": 8.0,
+                        "measure": "ounce",
+                        "food": "chuck steak",
+                        "weight": 226.796185,
+                        "foodCategory": "meats",
+                        "foodId": "food_ah7w61mayp8jqjbbgicxfaib9opa",
+                        "image": "https://www.edamam.com/food-img/e53/e53f909f06b1a44972b9492a7604beee.jpg"
+                    },
+                    {
+                        "text": "1/4 teaspoon salt",
+                        "quantity": 0.25,
+                        "measure": "teaspoon",
+                        "food": "salt",
+                        "weight": 1.5,
+                        "foodCategory": "Condiments and sauces",
+                        "foodId": "food_btxz81db72hwbra2pncvebzzzum9",
+                        "image": "https://www.edamam.com/food-img/694/6943ea510918c6025795e8dc6e6eaaeb.jpg"
+                    },
+                    {
+                        "text": "3 cups water",
+                        "quantity": 3.0,
+                        "measure": "cup",
+                        "food": "water",
+                        "weight": 711.0,
+                        "foodCategory": "water",
+                        "foodId": "food_a99vzubbk1ayrsad318rvbzr3dh0",
+                        "image": "https://www.edamam.com/food-img/5dd/5dd9d1361847b2ca53c4b19a8f92627e.jpg"
+                    }
+                ],
+                "totalTime": 0.0
+            },
+            "_links": {
+                "self": {
+                    "href": "https://api.edamam.com/api/recipes/v2/0f3a359371750f372c7ac3c1459751d9?type=public&app_id=841ecd18&app_key=50fd4d36e5c637e54ca56014f14a0a2f",
+                    "title": "Self"
+                }
+            }
+        }
+    ]
+}

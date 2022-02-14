@@ -23,6 +23,12 @@ class ListRecipeModel {
     private var downloadService = DownloadService.shared
     private var manageCoreData = ManageCoreData.shared
     
+    // 4 XCTest
+    convenience init(downloadService: DownloadService, manageCoreData: ManageCoreData ) {
+        self.init()
+        self.downloadService = downloadService
+        self.manageCoreData = manageCoreData
+    }
     
     public func searchOneImage(url: String, completionHandler: @escaping (ResultImage) -> Void) {
         downloadService.downloadImage(url: url) { resultImage in

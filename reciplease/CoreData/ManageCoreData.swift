@@ -10,7 +10,7 @@ import CoreData
 class ManageCoreData {
     
     public static let shared = ManageCoreData()
-    private init() {}
+    init() {}
     
     private let context = AppDelegate.viewContext
     
@@ -79,21 +79,6 @@ class ManageCoreData {
         return nil
     }
     
-    func resetAllRecords(in entity : String) {
-        print("reset record \(entity)")
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        do
-        {
-            try context.execute(deleteRequest)
-            try context.save()
-        }
-        catch
-        {
-            print ("There was an error")
-        }
-    }
-    
     public func setValueForFavorite(idRecipe: String, favorite: Bool) -> Bool {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.predicate = NSPredicate(format: "idRecipe == %@", idRecipe)
@@ -132,7 +117,7 @@ class ManageCoreData {
         return tblIdRecipe
     }
     
-    private func getidRecipe(urlRecipe: String) -> String {
+    public func getidRecipe(urlRecipe: String) -> String {
         if let idStr = urlRecipe.split(separator: "_").last {
             return String(idStr)
         } else {
@@ -271,4 +256,19 @@ class ManageCoreData {
             }
         }
     }
+    
+    /*func resetAllRecords(in entity : String) {
+        print("reset record \(entity)")
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try context.execute(deleteRequest)
+            try context.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
+    }*/
 }

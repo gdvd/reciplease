@@ -17,6 +17,7 @@ enum ResultImage{
     case Failure(failure: RequestError)
 }
 enum RequestError: Error {
+    case returnZero
     case returnNil
     case statusCodeWrong
     case decodeError
@@ -25,10 +26,10 @@ enum RequestError: Error {
 class DownloadService {
     
     public static let shared = DownloadService()
-    //private var task: URLSessionDataTask?
-    private init(){ }
+    init(){ }
     
     public func downloadRecipes(url: String, completionHandler: @escaping (Result<ResponseRequest>) -> Void) {
+        
         AF.request(url, method: .get)
             .response(){ (response) in
                 guard let _ = response.data, response.error == nil else {
@@ -48,7 +49,6 @@ class DownloadService {
                 }
                 completionHandler(.Success(response: responseJSON))
             }
-//            .responseDecodable(of: ResponseRequest.self) { (response) in } 
     }
 
 
@@ -74,6 +74,9 @@ class DownloadService {
                 completionHandler(.Success(response: responseImage))
             }
     }
+
+
+    
 }
 
 

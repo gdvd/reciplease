@@ -22,7 +22,7 @@ struct RecipeToShow {
         self.favorite = favorite
     }
     
-    let idRecipe: String!
+    var idRecipe: String!
     let label: String!
     let yield: String!
     let duration: String!
