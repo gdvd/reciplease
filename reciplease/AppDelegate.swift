@@ -59,16 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    /*
-    func applicationWillResignActive(_ application: UIApplication) {
-        guard let rv = self.window?.rootViewController as? UINavigationController else {
-            print("No Navigation Controller")
-            return
-        }
-        if let r = rv.presentedViewController as? UINavigationController, let c = r.topViewController as? CertificateImportViewController {
-            c.dismiss(animated: true, completion: nil)
-        }
-    }*/
 
 }
 

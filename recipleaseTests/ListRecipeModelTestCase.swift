@@ -10,6 +10,30 @@ import XCTest
 
 class ListRecipeModelTestCase: XCTestCase {
     
+    
+    
+    func testSearchrecipesWhenfailurenetworkGivenkeyword0123ShouldResultIsFailure(){
+        
+        let recipeToShow = RecipeToShow(idRecipe: "", label: "String", yield: "1", duration: "1", ingredients: [], ingredientWithDetails: [], urlApi: "urlApi", urlSrc: "urlSrc", favorite: true)
+        
+        let downloadService = FakeDownloadService(isCase: .failure)
+        let manageCoreData = FakeManageCoreData(isCase: .success, recipeToShow: recipeToShow)
+        
+        let listRecipeModel = ListRecipeModel(downloadService: downloadService, manageCoreData: manageCoreData)
+        
+        listRecipeModel.searchRecipes(tblStringRequest: ["String"]) { tblRecipeToShow in
+            switch tblRecipeToShow {
+            case .Success(_):
+                XCTAssert(false)
+            case .Failure(_):
+                XCTAssert(true)
+            case .Zero:
+                XCTAssert(false)
+            }
+        }
+    }
+    
+    
     func testSearchrecipesGivenkeyword0123ShouldResultIsZerohit(){
         
         let recipeToShow = RecipeToShow(idRecipe: "", label: "String", yield: "1", duration: "1", ingredients: [], ingredientWithDetails: [], urlApi: "urlApi", urlSrc: "urlSrc", favorite: true)
@@ -55,11 +79,12 @@ class ListRecipeModelTestCase: XCTestCase {
     
     
     func testSearchoneimagewhenDataIsGoodGivenSuccessRespone(){
-        
+        let recipeToShow = RecipeToShow(idRecipe: "", label: "String", yield: "1", duration: "1", ingredients: [], ingredientWithDetails: [], urlApi: "urlApi", urlSrc: "urlSrc", favorite: true)
         let downloadService = FakeDownloadService(isCase: .success)
-        let favoriteModel = FavoriteModel(downloadService: downloadService)
+        let manageCoreData = FakeManageCoreData(isCase: .success, recipeToShow: recipeToShow)
+        let listRecipeModel = ListRecipeModel(downloadService: downloadService, manageCoreData: manageCoreData)
         
-        favoriteModel.searchOneImage(url: "") {
+        listRecipeModel.searchOneImage(url: "") {
             result in 
             switch result {
             case .Success(response: let image):
@@ -72,11 +97,12 @@ class ListRecipeModelTestCase: XCTestCase {
     }
     
     func testSearchoneimagewhenDataIsBadGivenFailureRespone(){
-        
+        let recipeToShow = RecipeToShow(idRecipe: "", label: "String", yield: "1", duration: "1", ingredients: [], ingredientWithDetails: [], urlApi: "urlApi", urlSrc: "urlSrc", favorite: true)
         let downloadService = FakeDownloadService(isCase: .failure)
-        let favoriteModel = FavoriteModel(downloadService: downloadService)
+        let manageCoreData = FakeManageCoreData(isCase: .success, recipeToShow: recipeToShow)
+        let listRecipeModel = ListRecipeModel(downloadService: downloadService, manageCoreData: manageCoreData)
         
-        favoriteModel.searchOneImage(url: "") {
+        listRecipeModel.searchOneImage(url: "") {
             result in 
             switch result {
             case .Success(response: _):

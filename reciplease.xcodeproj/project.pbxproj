@@ -21,6 +21,7 @@
 		124754D227A8480700D5F7F4 /* Recipe2Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124754D127A8480700D5F7F4 /* Recipe2Ingredient.swift */; };
 		124754D627A8485300D5F7F4 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124754D527A8485300D5F7F4 /* Ingredient.swift */; };
 		124754D827A8488200D5F7F4 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124754D727A8488200D5F7F4 /* Recipe.swift */; };
+		124A961627BA620A0089B5EE /* ManageCoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A961527BA620A0089B5EE /* ManageCoreDataTestCase.swift */; };
 		124C441027A45A7000B7EC5F /* SearchModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C440F27A45A7000B7EC5F /* SearchModelTestCase.swift */; };
 		124C441427A4681B00B7EC5F /* ListRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C441327A4681B00B7EC5F /* ListRecipeModel.swift */; };
 		124C441627A4687E00B7EC5F /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124C441527A4687E00B7EC5F /* DownloadService.swift */; };
@@ -77,6 +78,7 @@
 		124754D127A8480700D5F7F4 /* Recipe2Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe2Ingredient.swift; sourceTree = "<group>"; };
 		124754D527A8485300D5F7F4 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		124754D727A8488200D5F7F4 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		124A961527BA620A0089B5EE /* ManageCoreDataTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCoreDataTestCase.swift; sourceTree = "<group>"; };
 		124C440627A4599A00B7EC5F /* recipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		124C440F27A45A7000B7EC5F /* SearchModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelTestCase.swift; sourceTree = "<group>"; };
 		124C441327A4681B00B7EC5F /* ListRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecipeModel.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				125C296527B670BF00E944F4 /* FavoriteModelTestCase.swift */,
 				125C296927B670FC00E944F4 /* RecipeToShowTestCase.swift */,
 				125C296727B670DE00E944F4 /* DetailModelTestCase.swift */,
+				124A961527BA620A0089B5EE /* ManageCoreDataTestCase.swift */,
 				125C296127B65B9700E944F4 /* DownloadServiceTestCase.swift */,
 				125C296327B670A100E944F4 /* ListRecipeModelTestCase.swift */,
 				1209417027B95511000E8105 /* Fake */,
@@ -397,6 +400,7 @@
 			files = (
 				124C441027A45A7000B7EC5F /* SearchModelTestCase.swift in Sources */,
 				1209416F27B9550C000E8105 /* FakeDownloadService.swift in Sources */,
+				124A961627BA620A0089B5EE /* ManageCoreDataTestCase.swift in Sources */,
 				125C296227B65B9800E944F4 /* DownloadServiceTestCase.swift in Sources */,
 				125C296427B670A100E944F4 /* ListRecipeModelTestCase.swift in Sources */,
 				125C296827B670DE00E944F4 /* DetailModelTestCase.swift in Sources */,

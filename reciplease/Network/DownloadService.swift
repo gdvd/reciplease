@@ -44,6 +44,7 @@ class DownloadService {
                     completionHandler(.Failure(failure: RequestError.decodeError))
                     return }
                 guard let responseJSON = try? JSONDecoder().decode(ResponseRequest.self, from: rec!) else {
+                    print(url.description ,rec!)
                     completionHandler(.Failure(failure: RequestError.decodeError))
                     return
                 }

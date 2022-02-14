@@ -23,11 +23,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         searchModel = SearchModel.shared
         searchModel.listArguments = []
         argToSearch.becomeFirstResponder()
-        //TODO: Erase after debug
-//        manageCoreData.resetAllRecords(in: "Recipe2Ingredient")
-//        manageCoreData.resetAllRecords(in: "Ingredient")
-//        manageCoreData.resetAllRecords(in: "Recipe")
-//        manageCoreData.resetAllRecords(in: "Image")
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

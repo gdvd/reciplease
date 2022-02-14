@@ -30,46 +30,6 @@ class ManageCoreData {
         return listRecipeToShow
     }
     
-    private func recipeToRecipetoshow(recipe: Recipe) -> RecipeToShow {
-        
-        var ingredients: [String] = []
-        var ingredientWithDetails: [String] = []
-        
-        if let rec2in = recipe.recipe2ing {
-            for r2c in rec2in {
-                let ri = r2c as! Recipe2Ingredient
-                if let r1 = ri.rec2recipe!.food {
-                    ingredients.append(r1)
-                }
-                if let r2 = ri.text {
-                    ingredientWithDetails.append(r2)
-                }
-                // let qt = ri.quantity // 1.0
-                // let we = ri.weight // 28.0
-                // let me = (ri.rec2recipe!.measure ?? "") as String
-                //                  // OPTIONAL : cup/<unit>/gram...
-            }
-        }
-        
-        var recipeToShow = RecipeToShow(idRecipe: recipe.idRecipe!, label: recipe.label!, yield: recipe.yield.description, duration: recipe.duration.description, ingredients: ingredients, ingredientWithDetails: ingredientWithDetails, urlApi: recipe.urlApi!, urlSrc: recipe.urlSrc!, favorite: recipe.favorite)
-        
-            // Make the best choice of image size, with sort in "sortImg" 
-            var tblUrlImgSorted: [String] = []
-            SizeImgRecipe.allCases.forEach { enumSizeImg in 
-                if let imgs = recipe.images {
-                    for img in imgs {
-                        let im = img as! Image
-                        if im.name! == enumSizeImg.rawValue {
-                            tblUrlImgSorted.append(im.url!.description)
-                            break
-                        }
-                    }
-                }
-            }
-        recipeToShow.images = tblUrlImgSorted
-        return recipeToShow
-    }
-    
     public func getOneRecipeToShow(withId: String) -> RecipeToShow? {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.predicate = NSPredicate(format: "idRecipe == %@", withId)
@@ -137,12 +97,52 @@ class ManageCoreData {
         }
     }
     
+    private func recipeToRecipetoshow(recipe: Recipe) -> RecipeToShow {
+        
+        var ingredients: [String] = []
+        var ingredientWithDetails: [String] = []
+        
+        if let rec2in = recipe.recipe2ing {
+            for r2c in rec2in {
+                let ri = r2c as! Recipe2Ingredient
+                if let r1 = ri.rec2recipe!.food {
+                    ingredients.append(r1)
+                }
+                if let r2 = ri.text {
+                    ingredientWithDetails.append(r2)
+                }
+                // let qt = ri.quantity // 1.0
+                // let we = ri.weight // 28.0
+                // let me = (ri.rec2recipe!.measure ?? "") as String
+                //                  // OPTIONAL : cup/<unit>/gram...
+            }
+        }
+        
+        var recipeToShow = RecipeToShow(idRecipe: recipe.idRecipe!, label: recipe.label!, yield: recipe.yield.description, duration: recipe.duration.description, ingredients: ingredients, ingredientWithDetails: ingredientWithDetails, urlApi: recipe.urlApi!, urlSrc: recipe.urlSrc!, favorite: recipe.favorite)
+        
+            // Make the best choice of image size, with sort in "sortImg" 
+            var tblUrlImgSorted: [String] = []
+            SizeImgRecipe.allCases.forEach { enumSizeImg in 
+                if let imgs = recipe.images {
+                    for img in imgs {
+                        let im = img as! Image
+                        if im.name! == enumSizeImg.rawValue {
+                            tblUrlImgSorted.append(im.url!.description)
+                            break
+                        }
+                    }
+                }
+            }
+        recipeToShow.images = tblUrlImgSorted
+        return recipeToShow
+    }
+    
     private func addNewRecipe(recipe: ResponseRecipe, idRecipe: String) -> Recipe? {
         let newRecipe = Recipe(context: context)
         newRecipe.idRecipe = idRecipe
         newRecipe.favorite = false
         newRecipe.label = recipe.label
-        newRecipe.duration = Int16(recipe.totalTime)
+        newRecipe.duration = Int16(recipe.totalTime ?? 0)
         if let urlApi = recipe.shareAs {
             newRecipe.urlApi = urlApi
         } else {
@@ -216,7 +216,8 @@ class ManageCoreData {
         
         let recipe2Ingredient = Recipe2Ingredient(context: context)
         recipe2Ingredient.text = responseIngredient.text
-        recipe2Ingredient.quantity = responseIngredient.quantity
+
+        recipe2Ingredient.quantity = responseIngredient.quantity 
         if let weight =  responseIngredient.weight {
             recipe2Ingredient.weight = weight
         }
@@ -256,19 +257,4 @@ class ManageCoreData {
             }
         }
     }
-    
-    /*func resetAllRecords(in entity : String) {
-        print("reset record \(entity)")
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        do
-        {
-            try context.execute(deleteRequest)
-            try context.save()
-        }
-        catch
-        {
-            print ("There was an error")
-        }
-    }*/
 }
