@@ -54,6 +54,11 @@ class ManageCoreDataTestCase: XCTestCase {
         }
     }
     
+    func testGetOneRecipeToShowGivenFalseidShouldNil() {
+        // If one Recipe with idRecipe = "2" exist -> test false
+        XCTAssertNil(coredata.getOneRecipeToShow(withId: "AZERTY"))
+    }
+    
     // setValueForFavorite(idRecipe: String, favorite: Bool) -> Bool
     func testSetvalueforfavoriteWhenfavoritechangeShouldChange() {
         // If one Recipe with idRecipe = "3" exist -> test false
@@ -77,6 +82,10 @@ class ManageCoreDataTestCase: XCTestCase {
         } else {
             XCTAssert(false)
         }
+    }
+    
+    func testSetvalueforfavoriteWhenIdDoesntExistShouldFalse() {
+        XCTAssertFalse(coredata.setValueForFavorite(idRecipe: "AZERTY", favorite: true))
     }
     
     // saveInDB(recipesInHits: [ResponseHit]) -> [String]
@@ -120,12 +129,15 @@ class ManageCoreDataTestCase: XCTestCase {
     
     // getidRecipe(urlRecipe: String) -> String
     func testGetidrecipeGivenUriShould123456789() {
-        
         let uri = "http://www.edamam.com/ontologies/edamam.owl#recipe_123456789"
         let res = coredata.getidRecipe(urlRecipe: uri)
-        
         XCTAssertEqual(res, "123456789")
-        
+    }
+    
+    func testGetidrecipeGivenIncorectUriShouldEmptyString() {
+        let uri = "http://www.edamam.com/ontologies/edamam.owlAZERTY"
+        let res = coredata.getidRecipe(urlRecipe: uri)
+        XCTAssertEqual(res, "")
     }
     
     ////////////////////////////// Tools 4 test ///////////////////////////

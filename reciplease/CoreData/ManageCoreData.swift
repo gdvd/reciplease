@@ -33,17 +33,21 @@ class ManageCoreData {
     public func getOneRecipeToShow(withId: String) -> RecipeToShow? {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.predicate = NSPredicate(format: "idRecipe == %@", withId)
-        if let recipe = try? AppDelegate.viewContext.fetch(request)[0] {
-            return recipeToRecipetoshow(recipe: recipe)
+        let rec = try? AppDelegate.viewContext.fetch(request)
+        if let recipe = rec, rec!.count != 0 {
+            return recipeToRecipetoshow(recipe: recipe[0])
+        } else {
+            return nil
         }
-        return nil
     }
     
     public func setValueForFavorite(idRecipe: String, favorite: Bool) -> Bool {
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.predicate = NSPredicate(format: "idRecipe == %@", idRecipe)
-        if let recipe = try? AppDelegate.viewContext.fetch(request)[0] {
-            recipe.favorite = favorite
+        
+        let rec = try? AppDelegate.viewContext.fetch(request)
+        if let recipe = rec, rec!.count != 0 {
+            recipe[0].favorite = favorite
             //recipe.setValue(true, forKey: "favorite")
             do {
                 try context.save()
@@ -78,8 +82,9 @@ class ManageCoreData {
     }
     
     public func getidRecipe(urlRecipe: String) -> String {
-        if let idStr = urlRecipe.split(separator: "_").last {
-            return String(idStr)
+        let idStr: [String] = urlRecipe.components(separatedBy: "_")
+        if idStr.count > 1 {
+            return idStr[idStr.count-1]
         } else {
             return ""
         }
