@@ -42,10 +42,6 @@ class DetailFavoriteViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
     func customSquareInfo(){
         squareInfo.layer.cornerRadius = 7
         squareInfo.layer.borderColor = UIColor.systemGray3.cgColor;
@@ -53,7 +49,13 @@ class DetailFavoriteViewController: UIViewController {
     }
 
     private func showInfoRecipe() {
-        recipeImg.image = recipeToShow.img
+        
+        if let dataImg = recipeToShow.dataImg {
+            recipeImg.image = UIImage(data: dataImg)
+        } else {
+            recipeImg.image = UIImage(named: Constants.nameImageByDefault)
+        }
+        
         labelRecipe.text = recipeToShow.label
         let listdetailIngr = "\n- " + recipeToShow.ingredientWithDetails.joined(separator: "\n- ")
         listIngredients.text = listdetailIngr

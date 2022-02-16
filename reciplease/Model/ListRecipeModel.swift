@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreData
-import UIKit
 
 enum ResultRecipes {
     case Success(response: [RecipeToShow])
@@ -33,8 +32,8 @@ class ListRecipeModel {
     public func searchOneImage(url: String, completionHandler: @escaping (ResultImage) -> Void) {
         downloadService.downloadImage(url: url) { resultImage in
             switch resultImage {
-            case .Success(response: let img):
-                completionHandler(.Success(response: img))
+            case .Success(response: let dataImg):
+                completionHandler(.Success(response: dataImg))
             case .Failure(failure: let error):
                 completionHandler(ResultImage.Failure(failure: error))
             }
@@ -46,12 +45,16 @@ class ListRecipeModel {
         let queryEncoded = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!
         let urlApi = Constants.urlApiEdamam.replacingOccurrences(of: Constants.textQueryPattern, with: queryEncoded)
         var tblIdRecipe: [String] = []
-        downloadService.downloadRecipes(url: urlApi) { [self]  result in
+        downloadService.downloadRecipes(url: urlApi) { 
+            [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .Success(response: let resp):
                 if resp.hits.count > 0 {
-                    tblIdRecipe = manageCoreData.saveInDB(recipesInHits: resp.hits)
-                    let tblRecipeToShow = getListRecipeToShowWithIdRecipe(tblIdRecipe: tblIdRecipe)
+                    tblIdRecipe = self.manageCoreData.saveInDB(recipesInHits: resp.hits)
+                    let tblRecipeToShow = self.getListRecipeToShowWithIdRecipe(tblIdRecipe: tblIdRecipe)
                     completionHandler(.Success(response: tblRecipeToShow))
                     
                 } else {

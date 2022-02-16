@@ -18,9 +18,7 @@ class ManageCoreData {
         var listRecipeToShow: [RecipeToShow] = []
         
         let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        //request.predicate = NSPredicate(format: "favorite == %@", 1)
         request.predicate = NSPredicate(format: "favorite = %d", true)
-        //request.predicate = NSPredicate(format: "boolAttribute == %@", NSNumber(value: true))
         
         if let recipes = try? AppDelegate.viewContext.fetch(request) {
             for recipe in recipes {
@@ -48,7 +46,6 @@ class ManageCoreData {
         let rec = try? AppDelegate.viewContext.fetch(request)
         if let recipe = rec, rec!.count != 0 {
             recipe[0].favorite = favorite
-            //recipe.setValue(true, forKey: "favorite")
             do {
                 try context.save()
             }
@@ -110,17 +107,16 @@ class ManageCoreData {
         
         if let rec2in = recipe.recipe2ing {
             for r2c in rec2in {
-                let ri = r2c as! Recipe2Ingredient
-                if let r1 = ri.rec2recipe!.food {
-                    ingredients.append(r1)
+                if let ri = r2c as? Recipe2Ingredient {
+                    if let rec = ri.rec2recipe {
+                        if let fo = rec.food {
+                            ingredients.append(fo)
+                        }
+                        if let te = ri.text {
+                            ingredientWithDetails.append(te)
+                        }
+                    }
                 }
-                if let r2 = ri.text {
-                    ingredientWithDetails.append(r2)
-                }
-                // let qt = ri.quantity // 1.0
-                // let we = ri.weight // 28.0
-                // let me = (ri.rec2recipe!.measure ?? "") as String
-                //                  // OPTIONAL : cup/<unit>/gram...
             }
         }
         

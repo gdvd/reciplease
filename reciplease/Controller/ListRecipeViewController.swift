@@ -7,9 +7,7 @@
 
 import UIKit
 
-
 class ListRecipeViewController: UIViewController {
-    
     
     var listArgumentsFetch: [String] = []
     var listRecipesToShow:[RecipeToShow] = []
@@ -27,8 +25,10 @@ class ListRecipeViewController: UIViewController {
     
     private func initData() {
         listRecipeModel.searchRecipes(tblStringRequest: listArgumentsFetch) {
-            
-            result in
+            [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .Success(response: let resp):
                 self.listRecipesToShow = resp
@@ -39,7 +39,6 @@ class ListRecipeViewController: UIViewController {
                 print("Return Failure with error :", error)
                 self.showError(msg: error.localizedDescription)
             }
-            
         }
     }
     
@@ -56,14 +55,17 @@ class ListRecipeViewController: UIViewController {
             let urlImgToDowloadNow = listRecipesToShow[findNb].images
             if urlImgToDowloadNow.count > 0 {
                 listRecipeModel.searchOneImage(url: urlImgToDowloadNow[0]) {
-                    [self] result in
+                    [weak self] result in
+                    guard let self = self else {
+                        return
+                    }
                     switch result {
-                    case .Success(let img):
-                        listRecipesToShow[findNb].img = img
+                    case .Success(let dataImg):
+                        self.listRecipesToShow[findNb].dataImg = dataImg
                     case .Failure(failure: let error):
                         print("******> error", error.localizedDescription)
                     }
-                    updateImgs(findNb: findNb + 1)
+                    self.updateImgs(findNb: findNb + 1)
                     self.tableViewRecipe.reloadData()
                 }
             }else {

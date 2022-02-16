@@ -5,7 +5,7 @@
 //  Created by Gilles David on 28/01/2022.
 //
 
-import UIKit
+import Foundation
 import Alamofire
 
 enum Result<T: Codable>{
@@ -13,7 +13,7 @@ enum Result<T: Codable>{
     case Failure(failure: RequestError)
 }
 enum ResultImage{
-    case Success(response: UIImage)
+    case Success(response: Data)
     case Failure(failure: RequestError)
 }
 enum RequestError: Error {
@@ -25,13 +25,13 @@ enum RequestError: Error {
 
 class DownloadService {
     
-    public static let shared = DownloadService()
+    static let shared = DownloadService()
     init(){ }
     
-    public func downloadRecipes(url: String, completionHandler: @escaping (Result<ResponseRequest>) -> Void) {
+    internal func downloadRecipes(url: String, completionHandler: @escaping (Result<ResponseRequest>) -> Void) {
         
         AF.request(url, method: .get)
-            .response(){ (response) in
+            .response(){ response in
                 guard let _ = response.data, response.error == nil else {
                     completionHandler(Result.Failure(failure: RequestError.returnNil))
                     return
@@ -53,9 +53,9 @@ class DownloadService {
     }
 
 
-    public func downloadImage(url: String, completionHandler: @escaping (ResultImage) -> Void) {
+    internal func downloadImage(url: String, completionHandler: @escaping (ResultImage) -> Void) {
         AF.request(url, method: .get)
-            .response(){ (response) in
+            .response(){ response in
                 guard let _ = response.data, response.error == nil else {
                     completionHandler(.Failure(failure: RequestError.returnNil))
                     return
@@ -64,15 +64,11 @@ class DownloadService {
                     completionHandler(.Failure(failure: RequestError.statusCodeWrong))
                     return
                 }
-                guard let rec = response.value else { 
+                guard let responseDataImg = response.value else { 
                     completionHandler(.Failure(failure: RequestError.decodeError))
                     return}
                 
-                guard let responseImage = UIImage(data: rec!) else {
-                    completionHandler(.Failure(failure: RequestError.decodeError))
-                    return
-                }
-                completionHandler(.Success(response: responseImage))
+                completionHandler(.Success(response: responseDataImg!))
             }
     }
 

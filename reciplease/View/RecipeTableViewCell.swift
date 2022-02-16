@@ -39,7 +39,12 @@ class RecipeTableViewCell: UITableViewCell {
     func configure(recipe: RecipeToShow){
         ingredientsLabel.text = recipe.ingredientWithDetails.joined(separator: ", ")
         labelRecipe.text = recipe.label
-        imageRecipe.image = recipe.img
+        
+        if let dataImg = recipe.dataImg {
+            imageRecipe.image = UIImage(data: dataImg)
+        } else {
+            imageRecipe.image = UIImage(named: Constants.nameImageByDefault)
+        }
         nbYield.text = recipe.yield
         durationRecipe.text = recipe.duration
     }

@@ -26,7 +26,8 @@ class FakeDownloadService: DownloadService {
         switch isCase {
         case .success:
             let img = UIImage(named: "cooking.png")
-            completionHandler(.Success(response: img!))
+            let dataImg = img?.pngData()
+            completionHandler(.Success(response: dataImg!))
         case .resultZeroRecipe:
             completionHandler(.Failure(failure: .returnNil))
         case .failure:

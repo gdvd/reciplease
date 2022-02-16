@@ -53,14 +53,17 @@ class FavoriteViewController: UIViewController {
             let urlImgToDowloadNow = listRecipesToShow[findNb].images
             if urlImgToDowloadNow.count > 0 {
                 favoriteModel.searchOneImage(url: urlImgToDowloadNow[0]) {
-                    [self] result in
+                    [weak self] result in
+                    guard let self = self else {
+                        return
+                    }
                     switch result {
-                    case .Success(let img):
-                        listRecipesToShow[findNb].img = img
+                    case .Success(let dataImg):
+                        self.listRecipesToShow[findNb].dataImg = dataImg
                     case .Failure(failure: let error):
                         print("******> error", error.localizedDescription)
                     }
-                    updateImgs(findNb: findNb + 1)
+                    self.updateImgs(findNb: findNb + 1)
                     self.favoriteTableView.reloadData()
                 }
             }else {

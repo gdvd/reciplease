@@ -41,7 +41,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "segueToListRecipe" {
             let listRecipeVC = segue.destination as! ListRecipeViewController
             listRecipeVC.listArgumentsFetch = searchModel.listArguments
-            
         }
     }
     

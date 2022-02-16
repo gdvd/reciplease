@@ -26,8 +26,8 @@ class FavoriteModel {
     public func searchOneImage(url: String, completionHandler: @escaping (ResultImage) -> Void) {
         downloadService.downloadImage(url: url) { resultImage in
             switch resultImage {
-            case .Success(response: let img):
-                completionHandler(.Success(response: img))
+            case .Success(response: let dataImg):
+                completionHandler(.Success(response: dataImg))
             case .Failure(failure: let error):
                 completionHandler(ResultImage.Failure(failure: error))
             }

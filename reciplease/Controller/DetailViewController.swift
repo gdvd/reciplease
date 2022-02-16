@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var squareInfo: UIView!
     
     var recipeToShow: RecipeToShow!
-    var prevDelegate: ListRecipeViewController!
+    weak var prevDelegate: ListRecipeViewController!
     
     let detailModel = DetailModel.shared
     
@@ -40,7 +40,13 @@ class DetailViewController: UIViewController {
     }
     
     private func showInfoRecipe() {
-        recipeImg.image = recipeToShow.img
+        
+        if let dataImg = recipeToShow.dataImg {
+            recipeImg.image = UIImage(data: dataImg)
+        } else {
+            recipeImg.image = UIImage(named: Constants.nameImageByDefault)
+        }
+        
         labelRecipe.text = recipeToShow.label
         let listdetailIngr = "\n- " + recipeToShow.ingredientWithDetails.joined(separator: "\n- ")
         listIngredients.text = listdetailIngr

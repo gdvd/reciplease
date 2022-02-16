@@ -19,9 +19,10 @@ class FavoriteModelTestCase: XCTestCase {
         favoriteModel.searchOneImage(url: "") {
             result in 
             switch result {
-            case .Success(response: let image):
-                let img = UIImage(named: "cooking.png")
-                XCTAssertEqual(image.description, img!.description)
+            case .Success(response: let dataImg):
+                let imgRef = UIImage(named: "cooking.png")
+                let img = UIImage(data: dataImg)
+                XCTAssertEqual(imgRef?.size, img?.size)
             case .Failure(failure: _):
                 XCTAssert(false)
             }
