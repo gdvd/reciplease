@@ -28,8 +28,6 @@
 		125C296227B65B9800E944F4 /* DownloadServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C296127B65B9700E944F4 /* DownloadServiceTestCase.swift */; };
 		125C296427B670A100E944F4 /* ListRecipeModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C296327B670A100E944F4 /* ListRecipeModelTestCase.swift */; };
 		125C296627B670BF00E944F4 /* FavoriteModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C296527B670BF00E944F4 /* FavoriteModelTestCase.swift */; };
-		125C296827B670DE00E944F4 /* DetailModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C296727B670DE00E944F4 /* DetailModelTestCase.swift */; };
-		125C296A27B670FC00E944F4 /* RecipeToShowTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125C296927B670FC00E944F4 /* RecipeToShowTestCase.swift */; };
 		126872F527A16D26001FC2F2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126872F427A16D26001FC2F2 /* TabBarController.swift */; };
 		126872F927A2D046001FC2F2 /* NanumPenScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 126872F827A2D046001FC2F2 /* NanumPenScript-Regular.ttf */; };
 		126872FB27A2E963001FC2F2 /* ListRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126872FA27A2E963001FC2F2 /* ListRecipeViewController.swift */; };
@@ -86,8 +84,6 @@
 		125C296127B65B9700E944F4 /* DownloadServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadServiceTestCase.swift; sourceTree = "<group>"; };
 		125C296327B670A100E944F4 /* ListRecipeModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecipeModelTestCase.swift; sourceTree = "<group>"; };
 		125C296527B670BF00E944F4 /* FavoriteModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModelTestCase.swift; sourceTree = "<group>"; };
-		125C296727B670DE00E944F4 /* DetailModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModelTestCase.swift; sourceTree = "<group>"; };
-		125C296927B670FC00E944F4 /* RecipeToShowTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeToShowTestCase.swift; sourceTree = "<group>"; };
 		126872F427A16D26001FC2F2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		126872F827A2D046001FC2F2 /* NanumPenScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumPenScript-Regular.ttf"; sourceTree = "<group>"; };
 		126872FA27A2E963001FC2F2 /* ListRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecipeViewController.swift; sourceTree = "<group>"; };
@@ -199,8 +195,6 @@
 			children = (
 				124C440F27A45A7000B7EC5F /* SearchModelTestCase.swift */,
 				125C296527B670BF00E944F4 /* FavoriteModelTestCase.swift */,
-				125C296927B670FC00E944F4 /* RecipeToShowTestCase.swift */,
-				125C296727B670DE00E944F4 /* DetailModelTestCase.swift */,
 				124A961527BA620A0089B5EE /* ManageCoreDataTestCase.swift */,
 				125C296127B65B9700E944F4 /* DownloadServiceTestCase.swift */,
 				125C296327B670A100E944F4 /* ListRecipeModelTestCase.swift */,
@@ -403,10 +397,8 @@
 				124A961627BA620A0089B5EE /* ManageCoreDataTestCase.swift in Sources */,
 				125C296227B65B9800E944F4 /* DownloadServiceTestCase.swift in Sources */,
 				125C296427B670A100E944F4 /* ListRecipeModelTestCase.swift in Sources */,
-				125C296827B670DE00E944F4 /* DetailModelTestCase.swift in Sources */,
 				125C296627B670BF00E944F4 /* FavoriteModelTestCase.swift in Sources */,
 				1209417627B99325000E8105 /* FakeManageCoreData.swift in Sources */,
-				125C296A27B670FC00E944F4 /* RecipeToShowTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

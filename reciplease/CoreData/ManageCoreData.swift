@@ -72,10 +72,11 @@ class ManageCoreData {
                          // Continued if the first part worked
                         saveImagesOfRecipe(recipe: recipe, images: recipeInHit.recipe.images)
                         saveIngredientsOfRecipe(recipe: recipe, ingredients: recipeInHit.recipe.ingredients)
-                        
+                        tblIdRecipe.append(idRecipe)
                     }
+                } else {
+                    tblIdRecipe.append(idRecipe)
                 }
-                tblIdRecipe.append(idRecipe)
             }
         }
         return tblIdRecipe

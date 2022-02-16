@@ -37,6 +37,7 @@ class ListRecipeViewController: UIViewController {
                 print("Return zero")
             case .Failure(let error):
                 print("Return Failure with error :", error)
+                self.showError(msg: error.localizedDescription)
             }
             
         }
@@ -73,6 +74,11 @@ class ListRecipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewRecipe.reloadData()
+    }
+    private func showError(msg: String){
+        let alertVC = UIAlertController(title: "Impossible", message: msg, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToDetails" {

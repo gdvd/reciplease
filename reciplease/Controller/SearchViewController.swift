@@ -13,8 +13,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var listArgumentsTextView: UITextView!
         
     private var searchModel: SearchModel!
-
-    //TODO: Erase after debug
     private let manageCoreData = ManageCoreData.shared
     
     //MARK: - Manage view
